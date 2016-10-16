@@ -118,8 +118,13 @@
    - "amsrc-pipeline-websrv"
   when: "archivematica_src_install_am|bool and archivematica_src_am_dashboard_gunicorn|bool"
 
-
-
+#
+# docker services configuration
+#
+- include: "docker.yml"
+  tags:
+    - "amsrc-docker"
+  when: ansible_virtualization_type == "docker"
 
 #
 # archivematica-devtools
@@ -147,3 +152,4 @@
   tags:
     - "amsrc-appraisaltab"
   when: "archivematica_src_install_appraisaltab|bool"
+
